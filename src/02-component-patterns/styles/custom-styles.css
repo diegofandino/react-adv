@@ -11,3 +11,9 @@
     border-radius: 20px;
     width:  calc(100% - 20px);
 }
+
+.shopping-cart{
+    position: fixed;
+    right: 10px;
+    top: 0px;
+}
