@@ -9,14 +9,6 @@ const product = {
     img: './coffee-mug.png'
 }
 
-const product2 = {
-    id: '2',
-    title: 'Coffee Mug 2',
-    img: './coffee-mug2.png'
-}
-
-const products: Product[] = [product, product2]
-
 interface ProductInCart extends Product {
   count: number;
 }
@@ -51,26 +43,26 @@ export const ShoppingPage = () => {
 
         <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
 
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} onChange={onProductCountChange} value={ shoppingCart[product.id]?.count || 0 }>
-          <ProductImage className='custom-image' />
-          <ProductTitle title='Coffee MUG2' />
-          <ProductButtons />
-        </ProductCard>
-      ))}
-
-
-          <div className='shopping-cart'>
-            {
-              Object.entries(shoppingCart).map(([key, product]) => (
-              <ProductCard value={product.count} onChange={onProductCountChange} key={key} product={product} style={{width: '100px'}}>
-                <ProductImage  className='custom-image' />
-                <ProductButtons />
-              </ProductCard>
-              )) 
-            }
-          </div>
-
+            <ProductCard 
+            key={product.id}
+            product={product}
+            onChange={onProductCountChange}
+            value={ shoppingCart[product.id]?.count || 0 }
+            initialValues={{
+              count: 4,
+              maxCount: 10
+            }}
+            >
+              {
+                () => (
+                  <>
+                    <ProductImage className='custom-image' />
+                    <ProductTitle title='Coffee MUG2' />
+                    <ProductButtons />
+                  </>
+                )
+              }
+            </ProductCard>
         </div>
 
     </div>
